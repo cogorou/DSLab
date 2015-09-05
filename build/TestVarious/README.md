@@ -301,7 +301,7 @@ AVI 形式の動画ファイルを読み込み、各フレームを画像オブ�
 
 <a href="http://livedoor.blogimg.jp/cogorou/imgs/1/f/1fe5b877.png" title="DSLab_TestVarious_Sample21_dst" target="_blank"><img src="http://livedoor.blogimg.jp/cogorou/imgs/1/f/1fe5b877-s.png" width="320" height="85" border="0" alt="DSLab_TestVarious_Sample21_dst" hspace="5" class="pict"  /></a>
 
-GRF ファイルは graphedt.exe (Windws SDK 同梱) で開くと下図のように視覚的に確認できます。  
+GRF ファイルは graphedt.exe (Windows SDK 同梱) で開くと下図のように視覚的に確認できます。  
 GRF ファイルを開く際、動画ファイルとの相対位置が異なるとエラーが発生して起動しませんのでご注意ください。  
 
 <img src="http://livedoor.blogimg.jp/cogorou/imgs/b/0/b0c162c9-s.png" width="320" height="150" border="0" alt="DSLab_TestVarious_Sample21_GRF" hspace="5" class="pict"  /></a><br />
@@ -331,7 +331,7 @@ AVI 形式の動画ファイルを WMV 形式の動画ファイルに変換す�
 
 <a href="http://livedoor.blogimg.jp/cogorou/imgs/8/5/8531d32f.png" title="DSLab_TestVarious_Sample22_dst" target="_blank"><img src="http://livedoor.blogimg.jp/cogorou/imgs/8/5/8531d32f-s.png" width="290" height="240" border="0" alt="DSLab_TestVarious_Sample22_dst" hspace="5" class="pict"  /></a>	
 
-GRF ファイルは graphedt.exe (Windws SDK 同梱) で開くと下図のように視覚的に確認できます。  
+GRF ファイルは graphedt.exe (Windows SDK 同梱) で開くと下図のように視覚的に確認できます。  
 GRF ファイルを開く際、動画ファイルとの相対位置が異なるとエラーが発生して起動しませんのでご注意ください。  
 
 <img src="http://livedoor.blogimg.jp/cogorou/imgs/2/8/282b3086-s.png" width="320" height="151" border="0" alt="DSLab_TestVarious_Sample22_GRF" hspace="5" class="pict"  /></a><br />
@@ -371,7 +371,7 @@ WMV 形式の動画ファイルを読み込み、各フレームを画像オブ�
 
 <a href="http://livedoor.blogimg.jp/cogorou/imgs/a/f/af66195f.png" title="DSLab_TestVarious_Sample31_dst" target="_blank"><img src="http://livedoor.blogimg.jp/cogorou/imgs/a/f/af66195f-s.png" width="320" height="85" border="0" alt="DSLab_TestVarious_Sample31_dst" hspace="5" class="pict"  /></a>
 
-GRF ファイルは graphedt.exe (Windws SDK 同梱) で開くと下図のように視覚的に確認できます。  
+GRF ファイルは graphedt.exe (Windows SDK 同梱) で開くと下図のように視覚的に確認できます。  
 GRF ファイルを開く際、動画ファイルとの相対位置が異なるとエラーが発生して起動しませんのでご注意ください。  
 
 <img src="http://livedoor.blogimg.jp/cogorou/imgs/3/9/392438f8-s.png" width="320" height="138" border="0" alt="DSLab_TestVarious_Sample31_GRF" hspace="5" class="pict"  /></a><br />
@@ -401,7 +401,7 @@ WMV 形式の動画ファイルを AVI 形式の動画ファイルに変換す�
 
 <a href="http://livedoor.blogimg.jp/cogorou/imgs/6/1/614d93f2.png" title="DSLab_TestVarious_Sample32_dst" target="_blank"><img src="http://livedoor.blogimg.jp/cogorou/imgs/6/1/614d93f2-s.png" width="290" height="240" border="0" alt="DSLab_TestVarious_Sample32_dst" hspace="5" class="pict"  /></a>
 
-GRF ファイルは graphedt.exe (Windws SDK 同梱) で開くと下図のように視覚的に確認できます。  
+GRF ファイルは graphedt.exe (Windows SDK 同梱) で開くと下図のように視覚的に確認できます。  
 GRF ファイルを開く際、動画ファイルとの相対位置が異なるとエラーが発生して起動しませんのでご注意ください。  
 
 <img src="http://livedoor.blogimg.jp/cogorou/imgs/8/d/8d0908ce-s.png" width="320" height="122" border="0" alt="DSLab_TestVarious_Sample32_GRF" hspace="5" class="pict"  /></a><br />
