@@ -21,6 +21,9 @@ build 配下の \_build.bat を実行してください。
 
 \_clean.bat を実行するとビルド結果を消去します。  
 
+## サンプル
+
+build/TestVarious 配下の [README.md](build/TestVarious/README.md) をご参照ください。
 
 ## ライセンス
 
