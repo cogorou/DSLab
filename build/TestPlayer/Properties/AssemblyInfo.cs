@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Eggs Imaging Laboratory")]
 [assembly: AssemblyProduct("DSLab")]
-[assembly: AssemblyCopyright("Copyright (c) 2014 Eggs Imaging Laboratory")]
+[assembly: AssemblyCopyright("Copyright (c) 2013 Eggs Imaging Laboratory")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 次の GUID は、このプロジェクトが COM に公開される場合の、typelib の ID です
-[assembly: Guid("80182f4f-9459-46e9-b02c-3ac460410bfa")]
+[assembly: Guid("e7dc6fc7-8147-4929-9fd1-5407d05fe630")]
 
 // アセンブリのバージョン情報は、以下の 4 つの値で構成されています:
 //

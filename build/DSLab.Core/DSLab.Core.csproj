@@ -61,7 +61,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AxiDS.cs" />
+    <Compile Include="Core\CxDeviceSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Core\CxDeviceSelectionForm.Designer.cs">
+      <DependentUpon>CxDeviceSelectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\CxDSException.cs" />
+    <Compile Include="Core\CxFilterInfo.cs" />
+    <Compile Include="Core\CxFormatInfo.cs" />
+    <Compile Include="Core\CxPinInfo.cs" />
     <Compile Include="Core\Enums.cs" />
     <Compile Include="Core\HRESULT.cs" />
     <Compile Include="Core\GUID.cs" />
@@ -70,11 +79,24 @@
     <Compile Include="Core\Structures.cs" />
     <Compile Include="Core\Win32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Core\CxDeviceSelectionForm.resx">
+      <DependentUpon>CxDeviceSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <!-- Windows -->

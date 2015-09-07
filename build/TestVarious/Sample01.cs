@@ -46,7 +46,7 @@ namespace demo
 				#region 映像入力デバイスの一覧: (カメラ等)
 				{
 					var category = new Guid(GUID.CLSID_VideoInputDeviceCategory);
-					var filterInfos = Util.GetFilterList(category);
+					var filterInfos = Axi.GetFilterList(category);
 
 					Console.WriteLine("Video Input Devices ({0})", filterInfos.Count);
 					for (int iii = 0; iii < filterInfos.Count; iii++)
@@ -63,7 +63,7 @@ namespace demo
 							filter = Axi.CreateFilter(category, filterInfo.CLSID, filterInfo.Index);
 
 							#region ピン情報:
-							var pinInfos = Util.GetPinList(filter);
+							var pinInfos = Axi.GetPinList(filter);
 							int outpin_num = 0;
 							Console.WriteLine("|  |- {0} ({1})", "Pins", pinInfos.Count);
 							for (int ppp = 0; ppp < pinInfos.Count; ppp++)
@@ -85,7 +85,7 @@ namespace demo
 								{
 									// 出力ピンからフォーマット情報を抽出します
 									pin = Axi.FindPin(filter, outpin_index, PIN_DIRECTION.PINDIR_OUTPUT);
-									var formatInfos = Util.GetFormatList(pin);
+									var formatInfos = Axi.GetFormatList(pin);
 
 									// 映像の情報のみ抽出します.
 									var videoInfos = formatInfos.FindAll(
@@ -131,7 +131,7 @@ namespace demo
 				#region 音声入力デバイスの一覧: (マイク等)
 				{
 					var category = new Guid(GUID.CLSID_AudioInputDeviceCategory);
-					var filterInfos = Util.GetFilterList(category);
+					var filterInfos = Axi.GetFilterList(category);
 
 					Console.WriteLine("Audio Input Devices ({0})", filterInfos.Count);
 					for (int iii = 0; iii < filterInfos.Count; iii++)
@@ -148,7 +148,7 @@ namespace demo
 							filter = Axi.CreateFilter(category, filterInfo.CLSID, filterInfo.Index);
 
 							#region ピン情報:
-							var pinInfos = Util.GetPinList(filter);
+							var pinInfos = Axi.GetPinList(filter);
 							Console.WriteLine("|  |- {0} ({1})", "Pins", pinInfos.Count);
 							for (int ppp = 0; ppp < pinInfos.Count; ppp++)
 							{
@@ -174,7 +174,7 @@ namespace demo
 				#region 音声出力デバイスの一覧: (スピーカー等)
 				{
 					var category = new Guid(GUID.CLSID_AudioRendererCategory);
-					var filterInfos = Util.GetFilterList(category);
+					var filterInfos = Axi.GetFilterList(category);
 
 					Console.WriteLine("Audio Output Devices ({0})", filterInfos.Count);
 					for (int iii = 0; iii < filterInfos.Count; iii++)
@@ -191,7 +191,7 @@ namespace demo
 							filter = Axi.CreateFilter(category, filterInfo.CLSID, filterInfo.Index);
 
 							#region ピン情報:
-							var pinInfos = Util.GetPinList(filter);
+							var pinInfos = Axi.GetPinList(filter);
 							Console.WriteLine("|  |- {0} ({1})", "Pins", pinInfos.Count);
 							for (int ppp = 0; ppp < pinInfos.Count; ppp++)
 							{

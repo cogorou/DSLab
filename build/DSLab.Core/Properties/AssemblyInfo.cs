@@ -8,10 +8,10 @@ using System.Runtime.InteropServices;
 // これらの属性値を変更してください
 [assembly: AssemblyTitle("DSLab.Core")]
 #if DEBUG
-[assembly: AssemblyDescription("DSLab.Core for Windows (Debug)")]
+[assembly: AssemblyDescription("DSLab.Core (Debug)")]
 [assembly: AssemblyConfiguration("Debug")]
 #else
-	[assembly: AssemblyDescription("DSLab.Core for Windows")]
+	[assembly: AssemblyDescription("DSLab.Core")]
 	[assembly: AssemblyConfiguration("Release")]
 #endif
 [assembly: AssemblyCompany("Eggs Imaging Laboratory")]

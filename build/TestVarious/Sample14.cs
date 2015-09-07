@@ -143,7 +143,7 @@ namespace demo
 					var watch = new Stopwatch();
 					watch.Start();
 					var ranges = new Dictionary<CameraControlProperty, TxPropertyRange>();
-					var control = Util.GetInterface<IAMCameraControl>(graph);
+					var control = Axi.GetInterface<IAMCameraControl>(graph);
 					foreach (CameraControlProperty prop in Enum.GetValues(typeof(CameraControlProperty)))
 					{
 						HRESULT hr;
@@ -222,7 +222,7 @@ namespace demo
 					var watch = new Stopwatch();
 					watch.Start();
 					var ranges = new Dictionary<VideoProcAmpProperty, TxPropertyRange>();
-					var control = Util.GetInterface<IAMVideoProcAmp>(graph);
+					var control = Axi.GetInterface<IAMVideoProcAmp>(graph);
 					foreach (VideoProcAmpProperty prop in Enum.GetValues(typeof(VideoProcAmpProperty)))
 					{
 						HRESULT hr;
@@ -322,7 +322,7 @@ namespace demo
 		}
 	}
 
-	#region プロパティレンジ構造体:
+	#region TxPropertyRange
 
 	/// <summary>
 	/// プロパティレンジ構造体

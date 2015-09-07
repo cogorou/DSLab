@@ -12,6 +12,16 @@ call _build.bat
 if ERRORLEVEL 1 goto :EOF
 popd
 
+pushd TestPanTilt
+call _build.bat
+if ERRORLEVEL 1 goto :EOF
+popd
+
+pushd TestPlayer
+call _build.bat
+if ERRORLEVEL 1 goto :EOF
+popd
+
 pushd TestVarious
 call _build.bat
 if ERRORLEVEL 1 goto :EOF

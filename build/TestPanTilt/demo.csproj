@@ -4,8 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A5B0AABB-0479-4802-A8DA-69AC64387F96}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{54D62950-FD5A-4695-9D4F-65B634441480}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>demo</RootNamespace>
     <AssemblyName>demo</AssemblyName>
@@ -20,6 +20,9 @@
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
     <Prefer32Bit>false</Prefer32Bit>
     <DSLab_BIN>..\..\bin-debug</DSLab_BIN>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -31,38 +34,40 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <Prefer32Bit>false</Prefer32Bit>
     <DSLab_BIN>..\..\bin</DSLab_BIN>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DSLab.Core">
-      <HintPath>$(DSLab_BIN)\DSLab.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="DSLab.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(DSLab_BIN)\DSLab.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sample01.cs" />
-    <Compile Include="Sample11.cs" />
-    <Compile Include="Sample12.cs" />
-    <Compile Include="Sample13.cs" />
-    <Compile Include="Sample14.cs" />
-    <Compile Include="Sample21.cs" />
-    <Compile Include="Sample22.cs" />
-    <Compile Include="Sample31.cs" />
-    <Compile Include="Sample32.cs" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="README.md" />
   </ItemGroup>
@@ -72,7 +77,11 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /s /y /i "$(ProjectDir)TestFiles" "$(TargetDir)TestFiles"</PostBuildEvent>
+    <PostBuildEvent Condition="'$(OS)'!='Unix'">xcopy /s /y /i "$(ProjectDir)TestFiles" "$(TargetDir)TestFiles"</PostBuildEvent>
+    <PostBuildEvent Condition="'$(OS)'=='Unix'">cp -ar "$(ProjectDir)TestFiles" "$(TargetDir)"</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent />
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
