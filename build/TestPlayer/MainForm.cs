@@ -41,7 +41,7 @@ namespace demo
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void Demo2Form_Load(object sender, EventArgs e)
+		private void MainForm_Load(object sender, EventArgs e)
 		{
 			timerUpdateUI.Start();
 		}
@@ -51,7 +51,7 @@ namespace demo
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void Demo2Form_FormClosing(object sender, FormClosingEventArgs e)
+		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			timerUpdateUI.Stop();
 		}
@@ -109,16 +109,15 @@ namespace demo
 				var mediaSeeking = (IMediaSeeking)Graph;
 				if (mediaSeeking != null)
 				{
-					int hr;
 					long start_positoin = 0;
 					long stop_position = 0;
-					hr = mediaSeeking.GetPositions(ref start_positoin, ref stop_position);
+					int hr = mediaSeeking.GetPositions(ref start_positoin, ref stop_position);
 					if (hr >= 0)
 					{
-						trackStartPosition.Value = (int)(start_positoin / UNIT);
-						trackStopPosition.Value = (int)(stop_position / UNIT);
-
-						statusSeeking.Text = string.Format("[{0}/{1}]", trackStartPosition.Value, trackStopPosition.Value);
+						int st = (int)(start_positoin / UNIT);
+						int ed = (int)(stop_position / UNIT);
+						trackCurrentPosition.Value = st;
+						statusSeeking.Text = string.Format("[{0}/{1}]", st, ed);
 					}
 				}
 			}
@@ -157,6 +156,70 @@ namespace demo
 		private Bitmap[] Buffer = new Bitmap[5];
 		private int BufferIndex = 0;
 		const int UNIT = 10 * 1000;	// x 100 nsec
+
+		/// <summary>
+		/// プレイヤーの接続状態
+		/// </summary>
+		private bool Player_Connected
+		{
+			get { return (Graph != null); }
+		}
+
+		/// <summary>
+		/// プレイヤーの動作状態
+		/// </summary>
+		private bool Player_IsRunning
+		{
+			get
+			{
+				var mediaControl = (IMediaControl)Graph;
+				if (mediaControl == null) return false;
+
+				#region 動作状態の確認:
+				try
+				{
+					int state = 0;
+					int hr = mediaControl.GetState(0, out state);
+					if (hr < 0)
+						return false;
+					return (
+						state == (int)FILTER_STATE.Running ||
+						state == (int)FILTER_STATE.Paused);
+				}
+				catch (System.Exception)
+				{
+					return false;
+				}
+				#endregion
+			}
+		}
+
+		/// <summary>
+		/// プレイヤーの一時停止状態
+		/// </summary>
+		private bool Player_IsPaused
+		{
+			get
+			{
+				var mediaControl = (IMediaControl)Graph;
+				if (mediaControl == null) return false;
+
+				#region 一時停止状態の確認:
+				try
+				{
+					int state = 0;
+					int hr = mediaControl.GetState(0, out state);
+					if (hr < 0)
+						return false;
+					return (state == (int)FILTER_STATE.Paused);
+				}
+				catch (System.Exception)
+				{
+					return false;
+				}
+				#endregion
+			}
+		}
 
 		/// <summary>
 		/// プレイヤーの接続
@@ -382,67 +445,73 @@ namespace demo
 		}
 
 		/// <summary>
-		/// プレイヤーの接続状態
+		/// プレイヤーの初期化
 		/// </summary>
-		private bool Player_Connected
+		private void Player_Initialize()
 		{
-			get { return (Graph != null); }
+			#region コントロールの初期化:
+			try
+			{
+				var mediaSeeking = (IMediaSeeking)Graph;
+				if (mediaSeeking == null)
+					throw new NotSupportedException();
+
+				int hr;
+				long duration = 0;
+				long start_positoin = 0;
+				long stop_position = 0;
+				hr = mediaSeeking.GetDuration(ref duration);
+				if (hr < 0)
+					throw new CxDSException((HRESULT)hr);
+
+				hr = mediaSeeking.GetPositions(ref start_positoin, ref stop_position);
+				if (hr < 0)
+					throw new CxDSException((HRESULT)hr);
+
+				// 現在位置.
+				trackCurrentPosition.Enabled = false;
+				trackCurrentPosition.Minimum = 0;
+				trackCurrentPosition.Maximum = (int)(duration / UNIT);
+				trackCurrentPosition.Value = (int)(start_positoin / UNIT);
+
+				// 開始位置.
+				trackStartPosition.Enabled = true;
+				trackStartPosition.Minimum = 0;
+				trackStartPosition.Maximum = (int)(duration / UNIT);
+				trackStartPosition.Value = (int)(start_positoin / UNIT);
+
+				// 停止位置.
+				trackStopPosition.Enabled = true;
+				trackStopPosition.Minimum = 0;
+				trackStopPosition.Maximum = (int)(duration / UNIT);
+				trackStopPosition.Value = (int)(stop_position / UNIT);
+			}
+			catch (System.Exception)
+			{
+				trackStartPosition.Enabled = false;
+				trackStopPosition.Enabled = false;
+			}
+			#endregion
 		}
 
 		/// <summary>
-		/// プレイヤーの動作状態
+		/// プレイヤーの再生前準備
 		/// </summary>
-		private bool Player_IsRunning
+		private void Player_Prepare()
 		{
-			get
-			{
-				var mediaControl = (IMediaControl)Graph;
-				if (mediaControl == null) return false;
+			#region 開始/停止位置:
+			var mediaSeeking = (IMediaSeeking)Graph;
+			if (mediaSeeking == null) return;
 
-				#region 動作状態の確認:
-				try
-				{
-					int state = 0;
-					int hr = mediaControl.GetState(0, out state);
-					if (hr < 0)
-						return false;
-					return (
-						state == (int)FILTER_STATE.Running ||
-						state == (int)FILTER_STATE.Paused);
-				}
-				catch (System.Exception)
-				{
-					return false;
-				}
-				#endregion
-			}
-		}
-
-		/// <summary>
-		/// プレイヤーの一時停止状態
-		/// </summary>
-		private bool Player_IsPaused
-		{
-			get
-			{
-				var mediaControl = (IMediaControl)Graph;
-				if (mediaControl == null) return false;
-
-				#region 一時停止状態の確認:
-				try
-				{
-					int state = 0;
-					int hr = mediaControl.GetState(0, out state);
-					if (hr < 0)
-						return false;
-					return (state == (int)FILTER_STATE.Paused);
-				}
-				catch (System.Exception)
-				{
-					return false;
-				}
-				#endregion
-			}
+			long start_positoin = (long)trackStartPosition.Value * UNIT;
+			long stop_position = (long)trackStopPosition.Value * UNIT;
+			int hr = mediaSeeking.SetPositions(
+				start_positoin, AM_SEEKING_SEEKING_FLAGS.AbsolutePositioning,
+				stop_position, AM_SEEKING_SEEKING_FLAGS.AbsolutePositioning
+				);
+			if (hr < 0)
+				throw new CxDSException((HRESULT)hr);
+			#endregion
 		}
 
 		/// <summary>
@@ -529,6 +598,51 @@ namespace demo
 
 		#endregion
 
+		#region DragDrop
+
+		/// <summary>
+		/// ドラッグされた項目がコントロール内に入ったとき
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MainForm_DragEnter(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.FileDrop))
+			{
+				e.Effect = DragDropEffects.All;
+				return;
+			}
+		}
+
+		/// <summary>
+		/// ドラッグされた項目がドロップされたとき
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MainForm_DragDrop(object sender, DragEventArgs e)
+		{
+			if (e.Data.GetDataPresent(DataFormats.FileDrop))
+			{
+				#region ファイルがドロップされた時.
+				try
+				{
+					string[] drops = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+					if (drops.Length > 0)
+					{
+						Player_Connect(drops[0]);
+						Player_Initialize();
+					}
+				}
+				catch (System.Exception ex)
+				{
+					MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+				#endregion
+			}
+		}
+
+		#endregion
+
 		#region Toolbar:
 
 		/// <summary>
@@ -553,44 +667,7 @@ namespace demo
 				if (dlg.ShowDialog(this) == DialogResult.OK)
 				{
 					Player_Connect(dlg.FileName);
-
-					#region コントロールの初期化:
-					try
-					{
-						var mediaSeeking = (IMediaSeeking)Graph;
-						if (mediaSeeking == null)
-							throw new NotSupportedException();
-
-						int hr;
-						long duration = 0;
-						long start_positoin = 0;
-						long stop_position = 0;
-						hr = mediaSeeking.GetDuration(ref duration);
-						if (hr < 0)
-							throw new CxDSException((HRESULT)hr);
-
-						hr = mediaSeeking.GetPositions(ref start_positoin, ref stop_position);
-						if (hr < 0)
-							throw new CxDSException((HRESULT)hr);
-
-						// 開始位置.
-						trackStartPosition.Enabled = true;
-						trackStartPosition.Minimum = 0;
-						trackStartPosition.Maximum = (int)(duration / UNIT);
-						trackStartPosition.Value = (int)(start_positoin / UNIT);
-
-						// 停止位置.
-						trackStopPosition.Enabled = true;
-						trackStopPosition.Minimum = 0;
-						trackStopPosition.Maximum = (int)(duration / UNIT);
-						trackStopPosition.Value = (int)(stop_position / UNIT);
-					}
-					catch (System.Exception)
-					{
-						trackStartPosition.Enabled = false;
-						trackStopPosition.Enabled = false;
-					}
-					#endregion
+					Player_Initialize();
 				}
 			}
 			catch (System.Exception ex)
@@ -611,7 +688,10 @@ namespace demo
 				if (Player_IsRunning)
 					Player_Stop();
 				else
+				{
+					Player_Prepare();
 					Player_Start();
+				}
 			}
 			catch (System.Exception ex)
 			{
