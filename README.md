@@ -15,15 +15,37 @@ O/S: Windows 7 Professional (x64)
 開発言語: Visual C#  
 
 
+## ソースコードの取得方法
+
+本サイトのページの右側にある Download ボタン を押下して zip 圧縮するか Git を用いて取得できます。
+
+<a href="http://livedoor.blogimg.jp/cogorou/imgs/d/5/d57d21a2.png"><img src="http://livedoor.blogimg.jp/cogorou/imgs/d/5/d57d21a2-s.png" width="320" height="197" border="0" alt="GitHub-Repos-blog" hspace="5" class="pict" /></a><br/>
+
+
+下記は、コマンドプロンプトからリポジトリのクローンを取得する例です。
+
+	C:> git clone https://github.com/cogorou/DSLab.git
+
+
+参考）Git 関連ソフトウェア  
+
+- Git  
+  http://git-scm.com/
+- TortoiseGit  
+  https://code.google.com/p/tortoisegit/
+
+
 ## ビルド方法
 
-build 配下の \_build.bat を実行してください。  
+ソースコードを取得した後、build 配下の \_build.bat を実行してください。  
 
 \_clean.bat を実行するとビルド結果を消去します。  
 
 ## サンプル
 
-build/TestVarious 配下の [README.md](build/TestVarious/README.md) をご参照ください。
+1. [TestVarious](build/TestVarious/README.md) … 基本的な使用例です。  
+2. [TestPanTilt](build/TestPanTilt/README.md) … カメラ制御の例です。  
+3. [TestPlayer](build/TestPlayer/README.md) … 動画再生の例です。  
 
 ## ライセンス
 
