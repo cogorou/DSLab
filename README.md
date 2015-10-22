@@ -19,8 +19,7 @@ O/S: Windows 7 Professional (x64)
 
 本サイトのページの右側にある Download ボタン を押下して zip 圧縮するか Git を用いて取得できます。
 
-<a href="http://livedoor.blogimg.jp/cogorou/imgs/d/5/d57d21a2.png"><img src="http://livedoor.blogimg.jp/cogorou/imgs/d/5/d57d21a2-s.png" width="320" height="197" border="0" alt="GitHub-Repos-blog" hspace="5" class="pict" /></a><br/>
-
+![Preview](http://livedoor.blogimg.jp/cogorou/imgs/d/5/d57d21a2-s.png)  
 
 下記は、コマンドプロンプトからリポジトリのクローンを取得する例です。
 
