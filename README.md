@@ -17,11 +17,9 @@ O/S: Windows 7 Professional (x64)
 
 ## ソースコードの取得方法
 
-本サイトのページの右側にある Download ボタン を押下して zip 圧縮するか Git を用いて取得できます。
+本サイトのページの右側にある "Clone or download" ボタン を押下して zip 圧縮するか Git を用いて取得できます。  
 
-![Preview](http://livedoor.blogimg.jp/cogorou/imgs/d/5/d57d21a2-s.png)  
-
-下記は、コマンドプロンプトからリポジトリのクローンを取得する例です。
+下記は、コマンドプロンプトからリポジトリのクローンを取得する例です。  
 
 	C:> git clone https://github.com/cogorou/DSLab.git
 

@@ -19,6 +19,3 @@ TestPlayer
 ## 実行
 
 $(TargetDir) に移動して demo.exe を実行してください。  
-
-![Preview](http://livedoor.blogimg.jp/cogorou/imgs/4/2/42efedc6-s.png")  
-[拡大表示](http://livedoor.blogimg.jp/cogorou/imgs/4/2/42efedc6.png")  
