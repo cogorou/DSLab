@@ -44,11 +44,6 @@ O/S: Windows 7 Professional (x64)
 2. [TestPanTilt](build/TestPanTilt/README.md) … カメラ制御の例です。  
 3. [TestPlayer](build/TestPlayer/README.md) … 動画再生の例です。  
 
-## ライセンス
-
-本ソフトウェアの利用・改変・再配布は自由に行って構いません。  
-但し、改変の有無に関わらず動作保証は行いませんのでご了承ください。  
-
 
 ## 著作者
 
